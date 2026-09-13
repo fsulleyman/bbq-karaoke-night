@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BBQ & Karaoke Night — Sept 20, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --char:#140a07;
+    --ember-deep:#2b120a;
+    --torch:#f0940a;
+    --torch-soft:#ffb648;
+    --navy:#1c3372;
+    --cream:#fbf3e7;
+    --smoke:#c3b6aa;
+    --line: rgba(251,243,231,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--char);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  a{color:inherit;}
+
+  .display{
+    font-family:'Bungee', cursive;
+    font-weight:400;
+    line-height:0.95;
+    letter-spacing:0.01em;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:7vh 6vw 10vh;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 112%, rgba(240,148,20,0.55), rgba(240,148,20,0) 60%),
+      radial-gradient(ellipse 60% 40% at 80% -5%, rgba(28,51,114,0.5), rgba(28,51,114,0) 65%),
+      linear-gradient(180deg, var(--char) 0%, var(--ember-deep) 70%, var(--char) 100%);
+  }
+
+  .embers{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .embers span{
+    position:absolute;
+    bottom:-10px;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--torch-soft);
+    box-shadow:0 0 8px 2px rgba(255,182,72,0.8);
+    animation:rise linear infinite;
+    opacity:0;
+  }
+  @keyframes rise{
+    0%{ transform:translateY(0) translateX(0); opacity:0; }
+    8%{ opacity:0.9; }
+    100%{ transform:translateY(-115vh) translateX(var(--drift,20px)); opacity:0; }
+  }
+
+  .kicker{
+    font-size:0.82rem;
+    letter-spacing:0.14em;
+    color:var(--torch-soft);
+    margin:0 0 18px;
+    z-index:2;
+  }
+
+  .hero h1{
+    margin:0;
+    z-index:2;
+    color:var(--cream);
+    font-size:clamp(2.6rem, 9vw, 6rem);
+    text-shadow:0 0 26px rgba(240,148,20,0.35);
+  }
+  .hero h1 .amp{
+    display:block;
+    color:var(--torch);
+    font-size:0.6em;
+    margin:0.12em 0;
+  }
+
+  .tagline{
+    z-index:2;
+    max-width:34ch;
+    margin:22px 0 34px;
+    font-size:1.08rem;
+    color:var(--smoke);
+    line-height:1.55;
+  }
+
+  .chips{
+    z-index:2;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:36px;
+  }
+  .chip{
+    border:1px solid var(--line);
+    background:rgba(251,243,231,0.05);
+    padding:9px 18px;
+    border-radius:100px;
+    font-size:0.92rem;
+    color:var(--cream);
+  }
+  .chip b{color:var(--torch-soft);}
+
+  .cta-row{
+    z-index:2;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    justify-content:center;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:15px 30px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:1rem;
+    text-decoration:none;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+    border:1px solid transparent;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:focus-visible{outline:2px solid var(--torch-soft); outline-offset:3px;}
+  .btn-primary{
+    background:var(--torch);
+    color:#1c0f02;
+    box-shadow:0 10px 26px -10px rgba(240,148,20,0.7);
+  }
+  .btn-primary:hover{box-shadow:0 14px 30px -8px rgba(240,148,20,0.85);}
+  .btn-ghost{
+    background:transparent;
+    border-color:var(--line);
+    color:var(--cream);
+  }
+  .btn-ghost:hover{border-color:var(--torch-soft); color:var(--torch-soft);}
+
+  .scroll-cue{
+    position:absolute;
+    bottom:26px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:2;
+    width:22px;
+    height:34px;
+    border:2px solid var(--line);
+    border-radius:12px;
+  }
+  .scroll-cue::before{
+    content:"";
+    position:absolute;
+    top:6px;
+    left:50%;
+    width:4px;
+    height:8px;
+    background:var(--torch-soft);
+    border-radius:2px;
+    transform:translateX(-50%);
+    animation:dot 1.8s ease-in-out infinite;
+  }
+  @keyframes dot{
+    0%,100%{ transform:translate(-50%,0); opacity:1; }
+    50%{ transform:translate(-50%,10px); opacity:0.3; }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{
+    padding:96px 6vw;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .section-head{
+    font-size:clamp(1.7rem, 4vw, 2.6rem);
+    max-width:16ch;
+    margin:0 0 16px;
+    color:var(--cream);
+  }
+  .section-copy{
+    max-width:56ch;
+    color:var(--smoke);
+    font-size:1.05rem;
+    line-height:1.65;
+    margin:0 0 40px;
+  }
+
+  /* details */
+  .details-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:56px;
+    align-items:start;
+  }
+  .ticket{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:34px;
+    background:linear-gradient(160deg, rgba(251,243,231,0.045), rgba(251,243,231,0.015));
+    position:relative;
+  }
+  .ticket::before, .ticket::after{
+    content:"";
+    position:absolute;
+    width:26px;
+    height:26px;
+    background:var(--char);
+    border-radius:50%;
+    top:50%;
+    transform:translateY(-50%);
+  }
+  .ticket::before{ left:-13px; }
+  .ticket::after{ right:-13px; }
+  .ticket dl{margin:0; display:grid; gap:20px;}
+  .ticket dt{
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    color:var(--torch-soft);
+    margin-bottom:5px;
+  }
+  .ticket dd{
+    margin:0;
+    font-size:1.12rem;
+    color:var(--cream);
+  }
+  .ticket-divider{
+    border:none;
+    border-top:1px dashed var(--line);
+    margin:6px 0;
+  }
+
+  /* song + map shared card */
+  .embed-card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:rgba(251,243,231,0.03);
+  }
+  .embed-card iframe{
+    width:100%;
+    border:0;
+    display:block;
+  }
+  .embed-foot{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:20px 24px;
+    border-top:1px solid var(--line);
+  }
+  .embed-foot p{margin:0; color:var(--smoke); font-size:0.95rem;}
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+  }
+
+  /* footer */
+  footer{
+    padding:64px 6vw 80px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .stamp{
+    display:inline-block;
+    border:2px solid #b5473d;
+    color:#e2685c;
+    padding:8px 18px;
+    border-radius:6px;
+    font-size:0.82rem;
+    letter-spacing:0.12em;
+    transform:rotate(-4deg);
+    margin-bottom:22px;
+  }
+  footer p{
+    color:var(--smoke);
+    margin:0;
+    font-size:1rem;
+  }
+
+  @media (max-width: 820px){
+    .details-grid, .two-col{grid-template-columns:1fr; gap:40px;}
+    section{padding:72px 6vw;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="embers" id="embers"></div>
+  <p class="kicker">Nathaniel Attipoe's Residence · Adenta</p>
+  <h1 class="display">BBQ<span class="amp">&amp;</span>KARAOKE NIGHT</h1>
+  <p class="tagline">Smoke on the grill, mics in the air, and nowhere to hide once it's your turn.</p>
+  <div class="chips">
+    <span class="chip">Sunday <b>20 Sept 2026</b></span>
+    <span class="chip">Doors open <b>3:00 PM</b></span>
+    <span class="chip">Adults only</span>
+  </div>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#song">Reserve your song</a>
+    <a class="btn btn-ghost" href="#find-us">Get directions</a>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</section>
+
+<section id="details">
+  <h2 class="section-head display">Where and when</h2>
+  <p class="section-copy">One evening, one backyard, one grill working overtime. Here's everything you need to show up ready.</p>
+  <div class="details-grid">
+    <div class="ticket">
+      <dl>
+        <div>
+          <dt>Host</dt>
+          <dd>Nathaniel Attipoe's Residence</dd>
+        </div>
+        <hr class="ticket-divider">
+        <div>
+          <dt>Address</dt>
+          <dd>14K Nii Agbosu Street, Adenta</dd>
+        </div>
+        <hr class="ticket-divider">
+        <div>
+          <dt>Date</dt>
+          <dd>Sunday, 20th September 2026</dd>
+        </div>
+        <hr class="ticket-divider">
+        <div>
+          <dt>Doors open</dt>
+          <dd>3:00 PM</dd>
+        </div>
+      </dl>
+    </div>
+    <div>
+      <p class="section-copy" style="margin-bottom:24px;">Come hungry — skewers hit the grill the moment the first guest arrives. Come loud — the mic doesn't care if you can actually sing.</p>
+      <a class="btn btn-primary" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=BBQ%20%26%20Karaoke%20Night&dates=20260920T150000Z/20260920T210000Z&details=Nathaniel%20Attipoe%27s%20Residence%2C%2014K%20Nii%20Agbosu%20Street%2C%20Adenta.%20Reserve%20your%20song%3A%20see%20invite.&location=14K%20Nii%20Agbosu%20Street%2C%20Adenta" target="_blank" rel="noopener">Add to calendar</a>
+    </div>
+  </div>
+</section>
+
+<section id="song">
+  <h2 class="section-head display">Claim your song</h2>
+  <p class="section-copy">Slots fill up fast once the grill gets going. Pick your track now and we'll have it queued and ready when you grab the mic.</p>
+  <div class="embed-card">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeqXPtG2_lx6blxChJ00EHQDGGJrdVbHziKh5hT4inOAe9OnQ/viewform?embedded=true" height="820" title="Song request form">Loading song request form…</iframe>
+    <div class="embed-foot">
+      <p>Form not loading?</p>
+      <a class="btn btn-ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSeqXPtG2_lx6blxChJ00EHQDGGJrdVbHziKh5hT4inOAe9OnQ/viewform" target="_blank" rel="noopener">Open the form directly</a>
+    </div>
+  </div>
+</section>
+
+<section id="find-us">
+  <h2 class="section-head display">Find the house</h2>
+  <p class="section-copy">It's the one with smoke rising over the gate and some questionable singing drifting from the yard.</p>
+  <div class="embed-card">
+    <iframe src="https://www.google.com/maps?q=14K+Nii+Agbosu+St,+Adenta+Municipality&output=embed" height="380" title="Map to Nathaniel Attipoe's Residence" loading="lazy"></iframe>
+    <div class="embed-foot">
+      <p>14K Nii Agbosu Street, Adenta</p>
+      <a class="btn btn-ghost" href="https://www.google.com/maps/place/14K+Nii+Agbosu+St,+Adenta+Municipality/data=!4m2!3m1!1s0xfdf833dace0a1e9:0xd719164a73ad7775?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noopener">Open in Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="stamp">BY INVITATION · ADULTS ONLY</div>
+  <p>See you at the grill.</p>
+</footer>
+
+<script>
+  // gentle ember particles in the hero — one orchestrated ambient effect, not scattered per-element motion
+  const emberField = document.getElementById('embers');
+  const count = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 22;
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement('span');
+    const left = Math.random() * 100;
+    const duration = 6 + Math.random() * 6;
+    const delay = Math.random() * 8;
+    const drift = (Math.random() * 60 - 30) + 'px';
+    s.style.left = left + '%';
+    s.style.setProperty('--drift', drift);
+    s.style.animationDuration = duration + 's';
+    s.style.animationDelay = delay + 's';
+    s.style.opacity = 0;
+    emberField.appendChild(s);
+  }
+</script>
+
+</body>
+</html>
